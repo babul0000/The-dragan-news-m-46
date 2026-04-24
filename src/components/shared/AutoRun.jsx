@@ -21,10 +21,10 @@ const user = [
 ];
 
     return (
-        <div className="flex items-center w-10/12 mx-auto py-3 px-2 gap-4 mt-5 bg-[#F3F3F3]">
+        <div className="flex items-center container mx-auto py-3 px-2 gap-4 mt-5 bg-[#F3F3F3]">
             
             <button className="btn btn-error">Latest</button>
-            <Marquee>
+            <Marquee pauseOnHover speed={100}>
                 <p>
                     {
                         user.map(use => <span className="mx-8" key={use.id}>{use.description}</span>)
