@@ -24,7 +24,7 @@ const CategoryPage = async ({ params }) => {
             <div className='bg-gray-100 col-span-3 rounded-md'>
                 <AllCategory categories={value} active={id} />
             </div>
-            <div className='bg-green-200 p-10 col-span-6 rounded-md'>
+            <div className=' p-5 col-span-6 rounded-md'>
                 {news?.data?.length > 0 ? (
                     news.data.map(item => (
                         <DragonNews key={item._id} item={item} />
