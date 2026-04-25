@@ -20,7 +20,7 @@ const AllCategory = async ({ categories, active }) => {
                             className={`${active === val.category_id ? "bg-gray-400 text-white" : "bg-white"
                                 } shadow-sm rounded-md px-3 py-2 text-sm text-center`}
                         >
-                            <Link href={`/Category/${val.category_id}`}>
+                            <Link href={`/category/${val.category_id}`}>
                                 {val.category_name}
                             </Link>
 
