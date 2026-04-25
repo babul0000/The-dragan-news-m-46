@@ -1,12 +1,16 @@
 "use client"
 import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { FaEye } from 'react-icons/fa';
 // import { useForm, SubmitHandler } from "react-hook-form"
 
 
 const LoginPage = () => {
+
+    const [isShow, setIsShow] = useState(false);
+
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const handleLogin = async (data) => {
@@ -25,6 +29,8 @@ const LoginPage = () => {
 
         console.log(res, error);
 
+         
+
 
     }
     return (
@@ -39,7 +45,7 @@ const LoginPage = () => {
                                 <h1 className="text-xl font-bold">Login your account</h1>
                             </div>
 
-                            <fieldset className="fieldset">
+                            <fieldset className="fieldset ">
                                 <label className=" text-lg font-semibold">Email address</label>
 
                                 <input type="email" className="input" placeholder="Email"
@@ -54,10 +60,18 @@ const LoginPage = () => {
 
                                 <label className="text-lg font-semibold">Password</label>
 
-                                <input type="password" className="input" placeholder="Password"
+                                <input  
+                                type={isShow ? "text" : "password"}
+                                
+                                className=" relative input" placeholder="Password"
                                     {...register("password", { required: true })}
 
+                                    
+
                                 />
+                                <span className=' ' onClick={() => setIsShow(!isShow)}> 
+                                    <FaEye/>
+                                </span>
 
                                 {errors.password && (
                                     <p className="text-red-500 text-sm">
