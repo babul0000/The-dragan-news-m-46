@@ -1,11 +1,14 @@
 import AllCategory from '@/components/homesection/AllCategory';
 import DragonNews from '@/components/homesection/DragonNews';
 import RightSidebar from '@/components/homesection/LoginSection';
-import { category, categoryId } from '@/lib/data';
+import { category, categoryId, newParams } from '@/lib/data';
 import React from 'react';
 
 
-
+export const metadata = {
+    title: "the dragon news",
+    description: "the best news in bd",
+};
 
 
 const CategoryPage = async ({ params }) => {

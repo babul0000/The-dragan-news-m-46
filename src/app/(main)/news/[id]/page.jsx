@@ -4,6 +4,19 @@ import { newParams } from '@/lib/data';
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
 
+export const generateMetadata = async({params }) => {
+    const { id } = await params;
+
+    const news = await newParams(id)
+
+    console.log(news);
+
+    return {
+    title: news.title,
+    description: news.details,
+    }
+
+}
 
 const NewsDetails = async({params }) => {
     const { id } = await params;
