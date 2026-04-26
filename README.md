@@ -26,44 +26,44 @@ React Fast Marquee	News ticker
 React Icons	Icons
 📁 প্রোজেক্ট স্ট্রাকচার
 src/
- ├── app/
- │   ├── (auth)/
- │   │   ├── login/page.jsx        # Login page
- │   │   ├── register/page.jsx     # Register page
- │   │   └── layout.jsx            # Auth layout
- │   │
- │   ├── (main)/
- │   │   ├── page.js               # Home (redirect to category)
- │   │   ├── layout.jsx            # Main layout
- │   │   ├── loading.jsx           # Loading UI
- │   │   ├── about/page.jsx        # About page
- │   │   ├── career/page.jsx       # Protected page
- │   │   ├── category/[id]/        # Category wise news
- │   │   └── news/[id]/            # News details page
- │   │
- │   ├── api/auth/[...all]/route.js # Better Auth API
- │   ├── layout.js                  # Root layout
- │   ├── not-found.jsx              # 404 page
- │   └── globals.css               # Global styles
- │
- ├── components/
- │   ├── homesection/
- │   │   ├── AllCategory.jsx       # Category sidebar
- │   │   ├── DragonNews.jsx        # News card
- │   │   └── LoginSection.jsx      # Social login UI
- │   │
- │   └── shared/
- │       ├── Header.jsx            # Logo + Date
- │       ├── Navbar.jsx            # Navigation
- │       ├── Navlink.jsx           # Active link
- │       └── AutoRun.jsx           # News ticker
- │
- ├── lib/
- │   ├── auth.js                   # Better Auth config
- │   ├── auth-client.js            # Client auth
- │   └── data.js                   # API functions
- │
- ├── proxy.js                      # Route protection middleware
+├── app/
+│   ├── (auth)/
+│   │   ├── login/page.jsx        # Login page
+│   │   ├── register/page.jsx     # Register page
+│   │   └── layout.jsx            # Auth layout
+│   │
+│   ├── (main)/
+│   │   ├── page.js               # Home (redirect to category)
+│   │   ├── layout.jsx            # Main layout
+│   │   ├── loading.jsx           # Loading UI
+│   │   ├── about/page.jsx        # About page
+│   │   ├── career/page.jsx       # Protected page
+│   │   ├── category/[id]/        # Category wise news
+│   │   └── news/[id]/            # News details page
+│   │
+│   ├── api/auth/[...all]/route.js # Better Auth API
+│   ├── layout.js                 # Root layout
+│   ├── not-found.jsx             # 404 page
+│   └── globals.css               # Global styles
+│
+├── components/
+│   ├── homesection/
+│   │   ├── AllCategory.jsx
+│   │   ├── DragonNews.jsx
+│   │   └── LoginSection.jsx
+│   │
+│   └── shared/
+│       ├── Header.jsx
+│       ├── Navbar.jsx
+│       ├── Navlink.jsx
+│       └── AutoRun.jsx
+│
+├── lib/
+│   ├── auth.js
+│   ├── auth-client.js
+│   └── data.js
+│
+├── proxy.js
 🔐 Authentication System (Better Auth)
 1️⃣ Server Config (auth.js)
 import { betterAuth } from "better-auth";
@@ -87,7 +87,6 @@ export const auth = betterAuth({
 
 MongoDB তে user data store করার জন্য
 Email + Social login support করার জন্য
-Authentication system handle করার জন্য
 2️⃣ Client Auth (auth-client.js)
 import { createAuthClient } from "better-auth/react";
 
@@ -97,7 +96,7 @@ export const authClient = createAuthClient({
 
 📌 কেন ব্যবহার করা হয়েছে?
 
-Frontend থেকে login/signup করার জন্য
+Frontend login/signup করার জন্য
 Session handle করার জন্য
 3️⃣ API Route
 import { auth } from "@/lib/auth";
@@ -107,32 +106,17 @@ export const { GET, POST } = toNextJsHandler(auth);
 
 📌 কেন ব্যবহার করা হয়েছে?
 
-/api/auth/* request handle করার জন্য
-Backend authentication connect করার জন্য
-🧭 Routing System (Next.js App Router)
+/api/auth/* handle করার জন্য
+🧭 Routing System
 🔹 Home Redirect
-// app/(main)/page.js
 import { redirect } from "next/navigation";
 
 export default function Home() {
   redirect("/category/01");
 }
-
-📌 কেন ব্যবহার করা হয়েছে?
-
-Default category page load করার জন্য
-🔹 Dynamic Category Route
-/category/[id]
-
-📌 কেন ব্যবহার করা হয়েছে?
-
-Category অনুযায়ী news দেখানোর জন্য
-🔹 News Details Page
-/news/[id]
-
-📌 কেন ব্যবহার করা হয়েছে?
-
-Full news details দেখানোর জন্য
+🔹 Dynamic Routes
+/category/[id] → Category wise news
+/news/[id] → News details
 📰 API Integration (data.js)
 export const category = async () => {
   const res = await fetch("https://openapi.programming-hero.com/api/news/categories");
@@ -151,9 +135,9 @@ export const newParams = async (id) => {
 
 📌 কেন ব্যবহার করা হয়েছে?
 
-API call clean রাখার জন্য
-Reusable function বানানোর জন্য
-🔐 Route Protection (middleware / proxy.js)
+API clean রাখার জন্য
+Reusable function
+🔐 Route Protection
 import { NextResponse } from "next/server";
 
 export function middleware(req) {
@@ -168,11 +152,9 @@ export function middleware(req) {
 
 📌 কেন ব্যবহার করা হয়েছে?
 
-Login ছাড়া protected page access বন্ধ করার জন্য
-🧩 Components Usage
+Protected route system
+🧩 Components
 🟢 Navbar.jsx
-import { useSession, signOut } from "@/lib/auth-client";
-
 const Navbar = () => {
   const { data: session } = useSession();
 
@@ -189,35 +171,10 @@ const Navbar = () => {
     </div>
   );
 };
-
-📌 কেন ব্যবহার করা হয়েছে?
-
-Login state অনুযায়ী UI change করার জন্য
-🟢 DragonNews.jsx
-
-📌 কাজ:
-
-Single news card UI
-Reusable component
-🟢 AllCategory.jsx
-
-📌 কাজ:
-
-Category sidebar
-Navigation system
-🟢 AutoRun.jsx
-
-📌 কাজ:
-
-News ticker (marquee)
-Latest news scroll effect
 🎨 UI System
 3 Column Layout
-Left → Category
-Center → News
-Right → Login/Social
-Responsive design (mobile friendly)
-DaisyUI cards
+Responsive design
+DaisyUI components
 Tailwind styling
 🔑 Environment Variables
 MONGODB_URL=
@@ -226,28 +183,16 @@ GOOGLE_CLIENT_SECRET=
 GITHUB_CLIENT_ID=
 GITHUB_CLIENT_SECRET=
 BETTER_AUTH_URL=
-
-📌 কেন দরকার?
-
-Sensitive data secure রাখার জন্য
-⚠️ Limitations
-Bookmark system নেই
-Share button functional না
-About/Career page simple
-Error handling basic
 🚀 Future Improvements
-
-🔥 Bookmark system (user based)
-🔥 Comment system
-🔥 Admin panel
-🔥 Dark mode
-🔥 Toast notifications
-🔥 News post system
-
+Bookmark system
+Comment system
+Admin panel
+Dark mode
+Toast notifications
 💡 Final Summary
 
-👉 The Dragon News হলো একটি Next.js 16 based full-stack news portal, যেখানে authentication, API integration, dynamic routing এবং modern UI system ব্যবহার করা হয়েছে।
+👉 The Dragon News হলো একটি Next.js 16 based full-stack news portal যেখানে authentication, API integration, dynamic routing এবং modern UI system ব্যবহার করা হয়েছে।
 
 👨‍💻 Author
 
-Babul Hossan 
+Babul Hossan
