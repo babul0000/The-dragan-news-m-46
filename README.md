@@ -94,19 +94,16 @@ export const authClient = createAuthClient({
   baseURL: "http://localhost:3000",
 });
 
-📌 কেন ব্যবহার করা হয়েছে:
+📌 Frontend login + session handle করার জন্য
 
-Frontend login/signup করার জন্য
-Session handle করার জন্য
 3️⃣ API Route
 import { auth } from "@/lib/auth";
 import { toNextJsHandler } from "better-auth/next-js";
 
 export const { GET, POST } = toNextJsHandler(auth);
 
-📌 কেন ব্যবহার করা হয়েছে:
+📌 /api/auth/* handle করার জন্য
 
-/api/auth/* request handle করার জন্য
 🧭 Routing System
 🔹 Home Redirect
 import { redirect } from "next/navigation";
@@ -136,10 +133,8 @@ export const newParams = async (id) => {
   return res.json();
 };
 
-📌 কেন ব্যবহার করা হয়েছে:
+📌 API clean + reusable করার জন্য
 
-API clean রাখার জন্য
-Reusable function তৈরি
 🔐 Route Protection (middleware)
 import { NextResponse } from "next/server";
 
@@ -153,7 +148,7 @@ export function middleware(req) {
   return NextResponse.next();
 }
 
-📌 Protected route system
+📌 Login ছাড়া protected page block করার জন্য
 
 🧩 Components
 🟢 Navbar.jsx
@@ -201,3 +196,5 @@ Toast notifications
 👨‍💻 Author
 
 Babul Hossan
+
+🔥 এখন এটা কেন সুন্দর দেখাবে?
