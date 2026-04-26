@@ -27,6 +27,14 @@ const LoginPage = () => {
 
         });
 
+        if(error){
+    alert(Error.message)
+}
+
+if(res){
+        alert("Login Successfully")
+    }
+
         console.log(res, error);
 
 
