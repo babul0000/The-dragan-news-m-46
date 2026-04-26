@@ -28,23 +28,23 @@ React Icons	Icons
 src/
 ├── app/
 │   ├── (auth)/
-│   │   ├── login/page.jsx        # Login page
-│   │   ├── register/page.jsx     # Register page
-│   │   └── layout.jsx            # Auth layout
+│   │   ├── login/page.jsx
+│   │   ├── register/page.jsx
+│   │   └── layout.jsx
 │   │
 │   ├── (main)/
-│   │   ├── page.js               # Home (redirect to category)
-│   │   ├── layout.jsx            # Main layout
-│   │   ├── loading.jsx           # Loading UI
-│   │   ├── about/page.jsx        # About page
-│   │   ├── career/page.jsx       # Protected page
-│   │   ├── category/[id]/        # Category wise news
-│   │   └── news/[id]/            # News details page
+│   │   ├── page.js
+│   │   ├── layout.jsx
+│   │   ├── loading.jsx
+│   │   ├── about/page.jsx
+│   │   ├── career/page.jsx
+│   │   ├── category/[id]/
+│   │   └── news/[id]/
 │   │
-│   ├── api/auth/[...all]/route.js # Better Auth API
-│   ├── layout.js                 # Root layout
-│   ├── not-found.jsx             # 404 page
-│   └── globals.css               # Global styles
+│   ├── api/auth/[...all]/route.js
+│   ├── layout.js
+│   ├── not-found.jsx
+│   └── globals.css
 │
 ├── components/
 │   ├── homesection/
@@ -83,10 +83,10 @@ export const auth = betterAuth({
   },
 });
 
-📌 কেন ব্যবহার করা হয়েছে?
+📌 কেন ব্যবহার করা হয়েছে:
 
 MongoDB তে user data store করার জন্য
-Email + Social login support করার জন্য
+Email + Social login system
 2️⃣ Client Auth (auth-client.js)
 import { createAuthClient } from "better-auth/react";
 
@@ -94,7 +94,7 @@ export const authClient = createAuthClient({
   baseURL: "http://localhost:3000",
 });
 
-📌 কেন ব্যবহার করা হয়েছে?
+📌 কেন ব্যবহার করা হয়েছে:
 
 Frontend login/signup করার জন্য
 Session handle করার জন্য
@@ -104,9 +104,9 @@ import { toNextJsHandler } from "better-auth/next-js";
 
 export const { GET, POST } = toNextJsHandler(auth);
 
-📌 কেন ব্যবহার করা হয়েছে?
+📌 কেন ব্যবহার করা হয়েছে:
 
-/api/auth/* handle করার জন্য
+/api/auth/* request handle করার জন্য
 🧭 Routing System
 🔹 Home Redirect
 import { redirect } from "next/navigation";
@@ -114,6 +114,9 @@ import { redirect } from "next/navigation";
 export default function Home() {
   redirect("/category/01");
 }
+
+📌 Default category page open করার জন্য
+
 🔹 Dynamic Routes
 /category/[id] → Category wise news
 /news/[id] → News details
@@ -133,11 +136,11 @@ export const newParams = async (id) => {
   return res.json();
 };
 
-📌 কেন ব্যবহার করা হয়েছে?
+📌 কেন ব্যবহার করা হয়েছে:
 
 API clean রাখার জন্য
-Reusable function
-🔐 Route Protection
+Reusable function তৈরি
+🔐 Route Protection (middleware)
 import { NextResponse } from "next/server";
 
 export function middleware(req) {
@@ -150,9 +153,8 @@ export function middleware(req) {
   return NextResponse.next();
 }
 
-📌 কেন ব্যবহার করা হয়েছে?
+📌 Protected route system
 
-Protected route system
 🧩 Components
 🟢 Navbar.jsx
 const Navbar = () => {
@@ -171,11 +173,14 @@ const Navbar = () => {
     </div>
   );
 };
+
+📌 Login state অনুযায়ী UI change
+
 🎨 UI System
 3 Column Layout
-Responsive design
-DaisyUI components
-Tailwind styling
+Fully Responsive Design
+DaisyUI Components
+Tailwind Styling
 🔑 Environment Variables
 MONGODB_URL=
 GOOGLE_CLIENT_ID=
