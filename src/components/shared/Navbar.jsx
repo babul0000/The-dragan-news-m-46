@@ -11,7 +11,7 @@ const Navbar = () => {
     const value = session?.user;
     console.log(value);
 
-   
+
 
     return (
         <div className="flex justify-between items-center container mx-auto mt-7">
@@ -27,33 +27,33 @@ const Navbar = () => {
                     <NavLink href="/career">Career</NavLink>
                 </li>
             </ul>
-           { isPending? ("loading...") : value ? (
-            <div className="flex items-center gap-2">
-                <p>{session?.user?.name}</p>
-                <Image src={userAvater} width={50} height={50} alt="user"></Image>
-                
-                    <button
-                    onClick={async() => await authClient.signOut()}
-                    className="btn bg-black text-white">Log out</button>
-                
-                
-
-                
-            </div>
-             ) :(
+            {isPending ? ("loading...") : value ? (
                 <div className="flex items-center gap-2">
-                <p>{session?.user?.name}</p>
-                <Image src={userAvater} width={50} height={50} alt="user"></Image>
-                <Link href="/login">
-                    <button className="btn bg-black text-white">Log in</button>
-                </Link>
-                
+                    <p>{session?.user?.name}</p>
+                    <Image src={userAvater} width={50} height={50} alt="user"></Image>
 
-                
-            </div> ) 
-            
-}
-           
+                    <button
+                        onClick={async () => await authClient.signOut()}
+                        className="btn bg-black text-white">Log out</button>
+
+
+
+
+                </div>
+            ) : (
+                <div className="flex items-center gap-2">
+                    <p>{session?.user?.name}</p>
+                    <Image src={userAvater} width={50} height={50} alt="user"></Image>
+                    <Link href="/login">
+                        <button className="btn bg-black text-white">Log in</button>
+                    </Link>
+
+
+
+                </div>)
+
+            }
+
         </div>
     );
 };

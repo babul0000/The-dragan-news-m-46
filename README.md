@@ -1,35 +1,30 @@
 🐲 The Dragon News – Next.js News Portal
 
-একটি আধুনিক Next.js 16 News Portal Application, যেখানে Authentication, Dynamic Routing, API Integration এবং Responsive UI একসাথে ব্যবহার করা হয়েছে
+একটি আধুনিক Next.js 16 ভিত্তিক Full-Stack News Portal Application, যেখানে Authentication, Dynamic Routing, API Integration এবং Responsive UI একসাথে ব্যবহার করা হয়েছে।
 
-🚀 প্রোজেক্ট ওভারভিউ
+🚀 Project Overview
 
-এই প্রোজেক্টটি একটি ফুল ফাংশনাল নিউজ প্ল্যাটফর্ম যেখানে:
+এই প্রোজেক্টটি একটি Full Functional News Platform, যেখানে—
 
-📰 Programming Hero API থেকে news fetch করা হয়
-🔐 Better Auth দিয়ে login system
-🗂️ Category wise news system
-👤 Google / GitHub login support
-🧭 Protected route system
-📱 Fully responsive UI
-
-
-| Technology         | কাজ                   |
-| ------------------ | --------------------- |
-| Next.js 16         | Full-stack framework  |
-| React 19           | UI development        |
-| Tailwind CSS       | Styling               |
-| DaisyUI            | UI components         |
-| Better Auth        | Authentication system |
-| MongoDB            | Database              |
-| React Hook Form    | Form handling         |
-| date-fns           | Date format           |
-| React Fast Marquee | News ticker           |
-| React Icons        | Icons                 |
-
-
-📁 প্রোজেক্ট স্ট্রাকচার
-
+📰 Programming Hero API থেকে News Fetch করা হয়
+🔐 Better Auth দিয়ে Secure Login System
+🗂️ Category-wise News Browsing
+👤 Google & GitHub Login Support
+🧭 Protected Route System
+📱 Fully Responsive UI Design
+🛠️ Tech Stack
+Technology	Usage
+Next.js 16	Full-stack Framework
+React 19	UI Development
+Tailwind CSS	Styling
+DaisyUI	UI Components
+Better Auth	Authentication System
+MongoDB	Database
+React Hook Form	Form Handling
+date-fns	Date Formatting
+React Fast Marquee	News Ticker
+React Icons	Icons
+📁 Project Structure
 src/
 ├── app/
 │   ├── (auth)/
@@ -50,7 +45,7 @@ src/
 │   ├── layout.js
 │   ├── not-found.jsx
 │   └── globals.css
-
+│
 ├── components/
 │   ├── homesection/
 │   │   ├── AllCategory.jsx
@@ -62,16 +57,20 @@ src/
 │       ├── Navbar.jsx
 │       ├── Navlink.jsx
 │       └── AutoRun.jsx
-
+│
 ├── lib/
 │   ├── auth.js
 │   ├── auth-client.js
 │   └── data.js
-
+│
 └── proxy.js
-
 🔐 Authentication System (Better Auth)
-1️⃣ Server Config (auth.js)
+
+
+1️⃣ Server Configuration (auth.js)
+
+
+
 import { betterAuth } from "better-auth";
 import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "@better-auth/mongo-adapter";
@@ -86,33 +85,34 @@ export const auth = betterAuth({
     github: {},
   },
 });
+2️⃣ 
 
-2️⃣ Client Auth (auth-client.js)
+Client Configuration (auth-client.js)
 import { createAuthClient } from "better-auth/react";
 
 export const authClient = createAuthClient({
   baseURL: "http://localhost:3000",
 });
 
+
 3️⃣ API Route
 import { auth } from "@/lib/auth";
 import { toNextJsHandler } from "better-auth/next-js";
 
 export const { GET, POST } = toNextJsHandler(auth);
-
 🧭 Routing System
-/category/[id] → Category wise news
-/news/[id] → News details
+/category/[id] → Category-wise News
+/news/[id] → News Details Page
 🔹 Home Redirect
+
+
 
 import { redirect } from "next/navigation";
 
 export default function Home() {
   redirect("/category/01");
 }
-
-API Integration (data.js)
-
+🌐 API Integration (data.js)
 export const category = async () => {
   const res = await fetch("https://openapi.programming-hero.com/api/news/categories");
   return res.json();
@@ -128,7 +128,10 @@ export const newParams = async (id) => {
   return res.json();
 };
 
-🔐 Route Protection (middleware)
+
+🔐 Route Protection (Middleware)
+
+
 import { NextResponse } from "next/server";
 
 export function middleware(req) {
@@ -141,31 +144,28 @@ export function middleware(req) {
   return NextResponse.next();
 }
 
+
 🎨 UI System
-3 Column Layout
-Fully Responsive Design
-DaisyUI Components
-Tailwind Styling
-
+📐 3 Column Layout
+📱 Fully Responsive Design
+🎨 Tailwind CSS Styling
+🌼 DaisyUI Components
 🔑 Environment Variables
-
 MONGODB_URL=
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 GITHUB_CLIENT_ID=
 GITHUB_CLIENT_SECRET=
 BETTER_AUTH_URL=
-
 🚀 Future Improvements
-Bookmark system
-Comment system
-Admin panel
-Dark mode
-Toast notifications
-
+🔖 Bookmark System
+💬 Comment System
+🛠️ Admin Panel
+🌙 Dark Mode
+🔔 Toast Notifications
 💡 Final Summary
 
-👉 The Dragon News হলো একটি Next.js 16 based full-stack news portal যেখানে authentication, API integration, dynamic routing এবং modern UI system ব্যবহার করা হয়েছে।
+👉 The Dragon News হলো একটি modern Next.js 16 based full-stack news portal, যেখানে authentication, API integration, dynamic routing এবং clean UI system সুন্দরভাবে implement করা হয়েছে।
 
 👨‍💻 Author
 

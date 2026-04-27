@@ -22,7 +22,7 @@ const CategoryPage = async ({ params }) => {
     console.log(news);
 
     return (
-        <div className='grid grid-cols-12 container mx-auto gap-4 mt-8 mb-10'>
+        <div className='grid grid-cols-1 md:grid-cols-12 container mx-auto gap-4 mt-8 mb-10'>
 
             <div className='bg-gray-100 col-span-3 rounded-md'>
                 <AllCategory categories={value} active={id} />

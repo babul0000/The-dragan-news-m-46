@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-// React Icons থেকে প্রয়োজনীয় আইকনগুলো ইমপোর্ট করুন
+
 import { FaRegBookmark, FaShareAlt, FaStar, FaEye } from 'react-icons/fa';
 
 const NewsCard = ({ item }) => {
